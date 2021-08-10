@@ -2,6 +2,19 @@ from tkinter import *
 from tkinter import ttk
 import database
 
+print('DATA (FrontEnd): ' + str(database.data))
+
+def mostrar_usuarios():
+    registro = 0
+    for fila in database.data:
+        registro = registro + 1 
+        print('DATA (FrontEnd): ' + str(registro) +" - "+ str(fila))
+        nombre = fila[0]  
+        edad = fila[1]
+        genero = fila[2]  
+        my_table.insert(parent='', index='end', iid=registro, text=str(registro), 
+            values=(nombre, edad, genero))
+
 def insertar_usuario():
     nombre = entry_nombre.get()
     edad = entry_edad.get()
@@ -9,6 +22,8 @@ def insertar_usuario():
 
     demo_db = database.MyDatabase()
     demo_db.insert_db(nombre, edad, genero)
+    demo_db.read_db()
+    mostrar_usuarios()
 
 window = Tk()
 frame_app = Frame(window, width=400, height=400, bg="yellow")
