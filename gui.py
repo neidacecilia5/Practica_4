@@ -2,6 +2,14 @@ from tkinter import *
 from tkinter import ttk
 import database
 
+def insertar_usuario():
+    nombre = entry_nombre.get()
+    edad = entry_edad.get()
+    genero = entry_genero.get()
+
+    demo_db = database.MyDatabase()
+    demo_db.insert_db(nombre, edad, genero)
+
 window = Tk()
 frame_app = Frame(window, width=400, height=400, bg="yellow")
 frame_app.pack()
@@ -59,9 +67,9 @@ label_sala = Label(frame_form,
               fg="white",
               bg="#d48df0")
 label_sala.place(x=30, y=30)
-entry_sala = Entry(frame_form, justify=LEFT, width=25, 
+entry_nombre = Entry(frame_form, justify=LEFT, width=25, 
              font=("Century Gothic", "14"))
-entry_sala.place(x=30, y=70)
+entry_nombre.place(x=30, y=70)
 
 label_butakas = Label(frame_form, 
               text="Edad:",
@@ -69,9 +77,9 @@ label_butakas = Label(frame_form,
               fg="white",
               bg="#d48df0")
 label_butakas.place(x=30, y=100)
-entry_butakas = Entry(frame_form, justify=LEFT, width=25, 
+entry_edad = Entry(frame_form, justify=LEFT, width=25, 
                 font=("Century Gothic", "14"))
-entry_butakas.place(x=30, y=140)
+entry_edad.place(x=30, y=140)
 
 label_boletos = Label(frame_form, 
               text="Género:",
@@ -79,13 +87,14 @@ label_boletos = Label(frame_form,
               fg="white",
               bg="#d48df0")
 label_boletos.place(x=30, y=170)
-entry_boletos = Entry(frame_form, justify=LEFT, width=25, 
+entry_genero = Entry(frame_form, justify=LEFT, width=25, 
                 font=("Century Gothic", "14"))
-entry_boletos.place(x=30, y=200)
+entry_genero.place(x=30, y=200)
 
 
 button_agregar = Button(frame_form, text="Insertar usuario", 
-                        font=("Century Gothic", "14", "bold"))
+                        font=("Century Gothic", "14", "bold"),
+                        command=insertar_usuario)
 button_agregar.place(x=110, y=250)
 
 window.mainloop()
